@@ -1,0 +1,41 @@
+<!--
+    Dos formas de enviar datos:
+    GET: Viajan por url
+    POST: Viajan por las cabeceras http
+-->
+
+{% extends 'layout.html' %}
+{% load static %}
+
+
+{% block title %}
+    Formularios de Mensajes
+{% endblock %}
+
+{% block content %}
+    <h1 class="title">Formulario de Mensajes</h1>
+    <script type = "text / javascript" src = "{% static ckeditor / ckeditor-init.js %}"> </script> 
+    <script type = "text / javascript" src = " {% static ckeditor / ckeditor / ckeditor.js%} "> </script>
+    {% if form.errors %}
+        <strong class="rojo">
+            Hay errores en el Formulario
+        </strong>
+    {% endif %}
+
+    <!--<form action = "{% url 'n_save_article' %}" method = "POST">-->
+    <form action = "" method = "POST">
+
+        {% csrf_token %}
+
+        <!--{{ form}}-->
+        <!--{{ form.as_ul}}-->
+        {{ form.media }}
+        {{ form.as_p }}
+
+        
+
+        <input type="submit" value="Guardar"/>
+    </form>
+
+{% endblock %}
+ 

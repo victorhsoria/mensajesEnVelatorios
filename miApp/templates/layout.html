@@ -1,0 +1,76 @@
+<!--
+    Dos formas de enviar datos:
+    GET: Viajan por url
+    POST: Viajan por las cabeceras http
+-->
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset='utf-8' />
+        <title>
+            {% block title %}
+
+            {% endblock %}
+            | Antigua Casa Pons
+        </title>
+        {% load static %}    
+        <link rel='stylesheet' type='text/css' href="{% static 'css/styles.css' %}" /> 
+        
+        
+    </head>
+    <body>
+        <!--Cabecera de la página-->
+        <header>
+            <div id="logotipo">
+                <!--Logo Django-->
+                <img src="{% static 'images/casapons.png' %}" />
+                <h1><strong>Antigua Casa Pons</strong></h1>
+            </div>
+        </header>
+
+        <nav>
+            <ul>
+                <li>
+                    <!--<a href = '/'>Inicio</a>-->
+                    <strong><a href="{% url 'n_index' %}">Inicio</a></strong>
+                </li>
+                <li>
+                    <!--<a href = '/'>Artículo</a>-->
+                    <strong><a href="{% url 'n_articulos' %}">Mensajes</a></strong>
+                </li>
+                <li>
+                    <strong><a href="{% url 'n_create_full_article' %}">Crear Mensaje</a></strong>
+                </li>
+                <li>
+                    <strong><a href="{% url 'mensaje_full' %}">Crear Mensaje Full</a></strong>
+                </li>
+                                
+                <li>
+                    <!--<a href = '/contacto'>Contacto</a>
+                    'Kariscita' 'Paiva' 25 son los Parámetros que se pueden pasar,
+                    los cuales son especificados en 'urls.py'-->
+                    <strong><a href="{% url 'n_contacto' %}">Contacto</a></strong>
+                </li>       
+            </ul>
+        </nav>
+        <div class="barra">
+            <span class="esquina-izquierda"></span>
+            <span class="relleno-barra"></span>
+            <span class="esquina-derecha"></span>
+        </div>
+
+        <div id="content">
+            <div class="box">
+                {% block content %}
+                    <!--Código que viene de templates-->
+                    <strong>Contenido del bloque original!!></strong>
+                {% endblock %}
+            </div>
+        </div>
+
+        <footer>
+            Antigua Casa Pons &copy; {% now "d/m/Y" %}
+        </footer>
+
+    </body>
+</html>

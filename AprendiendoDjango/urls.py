@@ -1,0 +1,45 @@
+"""AprendiendoDjango URL Configuration
+
+The `urlpatterns` list routes URLs to views. For more information please see:
+    https://docs.djangoproject.com/en/3.0/topics/http/urls/
+Examples:
+Function views
+    1. Add an import:  from my_app import views
+    2. Add a URL to urlpatterns:  path('', views.home, name='home')
+Class-based views
+    1. Add an import:  from other_app.views import Home
+    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
+Including another URLconf
+    1. Import the include() function: from django.urls import include, path
+    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
+"""
+from django.contrib import admin
+from django.urls import path
+from django.conf import settings
+
+# Importar app con mis vistas
+from miApp import views
+#import miApp.views
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('', views.index, name="n_index"),
+    path('inicio/', views.index, name="n_inicio"),
+    path('otra-pagina/', views.otra_pagina, name="n_otra_pagina"),
+    path('otra-pagina/<int:redirigir>', views.otra_pagina, name="n_otra_pagina"),    
+    path('contacto/', views.contacto, name="n_contacto"),
+    path('crear-articulo/<str:title>/<str:content>/<str:public>/', views.crear_articulo, name='n_crear_articulo'),
+    path('mostrar-articulo/<int:p_id>/', views.mostrar_articulo, name='n_mostrar_articulo'),
+    path('editar-articulo/<int:p_id>/', views.editar_articulo, name='n_editar_articulo'),
+    path('articulos/', views.listar_articulos, name='n_articulos'),
+    path('borrar-articulo/<int:p_id>/', views.borrar_articulo, name='n_borrar_articulo'),
+    path('save-article/', views.save_article, name='n_save_article'),
+    path('create-article/', views.create_article, name='n_create_article'),
+    path('create-full-article/', views.create_full_article, name='n_create_full_article'),
+    path('mensaje-full', views.mensaje_full, name='mensaje_full'),
+]
+
+# Configuración para cargar imágenes
+if settings.DEBUG:
+    from django.conf.urls.static import static
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -1,0 +1,26 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    {{title}} 
+{% endblock %}
+
+{% block content %}
+    {% load static %} 
+    <!--<h1 class="title">{{title}}</h1>-->
+    <!--<p>{{mi_variable}}</p>-->
+    
+    <h1>Antigua casa Pons</h1>
+
+    <div id="paisaje">
+                <!--Logo Django-->
+                <img src="{% static 'images/paisaje.jpg' %}" />
+                
+    </div>
+
+    <!-- Agregando otro Template al nuestro
+    incluyendo el paso de parámetro con 'with' 
+    se puede usar el atributo 'only' para que herede solo los parámetros del 'with':
+    {% include 'fecha_actual.html' with saludo="Hola mundo desde plantilla Index" only%}
+    {% include 'fecha_actual.html' with saludo="Hola mundo desde plantilla Index"%}-->
+
+{% endblock %}
